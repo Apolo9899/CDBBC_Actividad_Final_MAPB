@@ -5,7 +5,8 @@ from rich.table import Table
 
 console = Console()
 
-RUTA_SAM = str(input("Introduce la ruta a tu archivo SAM: "))
+RUTA_SAM = sys.argv[1]
+MAPQ_thr = float(sys.argv[2])
 
 if not os.path.exists(RUTA_SAM):
     console.print(f"[bold red]ERROR:[/bold red] La ruta '{RUTA_SAM}' no existe")
@@ -14,8 +15,6 @@ if not os.path.exists(RUTA_SAM):
 if not RUTA_SAM.endswith(".sam"):
     console.print("[bold red]ERROR:[/bold red] El fichero introducido no es un archivo .sam")
     sys.exit(1)
-
-MAPQ_thr = float(input("Introduce el umbral de MAPQ a seleccionar: "))
 
 with open(RUTA_SAM, "r") as fichero_sam:
     n_lecturas = 0
